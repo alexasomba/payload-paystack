@@ -1,0 +1,66 @@
+{
+  "name": "@alexasomba/payload-paystack",
+  "version": "0.1.0",
+  "description": "Paystack payments and billing for Payload CMS",
+  "author": "Alex Asomba",
+  "homepage": "https://github.com/alexasomba/payload-paystack#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexasomba/payload-paystack.git",
+    "directory": "packages/payload-paystack"
+  },
+  "bugs": { "url": "https://github.com/alexasomba/payload-paystack/issues" },
+  "keywords": ["payloadcms", "payload-plugin", "paystack", "payments", "billing", "typescript"],
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "files": ["dist", "README.md", "LICENSE"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js"
+    },
+    "./admin": {
+      "types": "./dist/admin.d.ts",
+      "import": "./dist/admin.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "prepack": "pnpm build"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "@payloadcms/ui": ">=3.79.1 <4",
+    "payload": ">=3.79.1 <4",
+    "react": ">=19.2.1 <20",
+    "react-dom": ">=19.2.1 <20"
+  },
+  "dependencies": {
+    "@alexasomba/paystack-node": "^1.12.0"
+  },
+  "devDependencies": {
+    "@payloadcms/ui": "^3.92.1",
+    "payload": "^3.92.1",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

@@ -1,0 +1,8 @@
+:root { color-scheme: light; font-family: ui-sans-serif, system-ui, sans-serif; color: #17212b; background: #f4f6f8; }
+body { margin: 0; }
+.checkout { max-width: 42rem; margin: 5rem auto; padding: 2.5rem; background: #fff; border: 1px solid #dce3e8; border-radius: 1rem; }
+.checkout h1 { margin-top: 0; }
+.checkout label, .checkout input { display: block; }
+.checkout input { box-sizing: border-box; width: 100%; margin: .5rem 0 1rem; padding: .75rem; border: 1px solid #aebbc5; border-radius: .5rem; }
+.checkout button { padding: .8rem 1rem; border: 0; border-radius: .5rem; background: #087a5c; color: #fff; font: inherit; cursor: pointer; }
+.checkout button:disabled { opacity: .65; cursor: wait; }

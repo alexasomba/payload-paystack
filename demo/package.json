@@ -1,0 +1,31 @@
+{
+  "name": "payload-paystack-demo",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "predev": "pnpm --filter @alexasomba/payload-paystack build",
+    "dev": "next dev",
+    "prebuild": "pnpm --filter @alexasomba/payload-paystack build",
+    "build": "next build",
+    "start": "next start",
+    "payload": "payload",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "^3.92.1",
+    "@payloadcms/next": "^3.92.1",
+    "@payloadcms/richtext-lexical": "^3.92.1",
+    "@alexasomba/payload-paystack": "workspace:*",
+    "next": "^15.4.8",
+    "payload": "^3.92.1",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "typescript": "^5.9.3"
+  }
+}

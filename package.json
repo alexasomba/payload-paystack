@@ -1,0 +1,19 @@
+{
+  "name": "payload-paystack-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@12.16.1",
+  "scripts": {
+    "build": "pnpm --filter @alexasomba/payload-paystack build",
+    "test": "pnpm --filter @alexasomba/payload-paystack test",
+    "typecheck": "pnpm --filter @alexasomba/payload-paystack typecheck",
+    "check": "pnpm build && pnpm typecheck && pnpm test && pnpm --filter payload-paystack-demo typecheck"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  }
+}

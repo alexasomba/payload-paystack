@@ -13,12 +13,14 @@ export type PaystackCurrency = "GHS" | "KES" | "NGN" | "ZAR" | "USD" | "XOF";
 
 export type { Paystack, PaystackClientOptions, PlanCreatePayload, SubscriptionCreatePayload };
 export { assertOk, createPaystack };
+export { verifyWebhookSignature as verifyPaystackWebhookSignature } from "./internal/shared.js";
 
 export function createPayloadPaystack(
-  options: PaystackPluginOptions & Partial<Pick<PaystackClientOptions, "fetch" | "timeoutMs">>,
+  options: PaystackPluginOptions & Partial<Pick<PaystackClientOptions, "baseUrl" | "fetch" | "timeoutMs">>,
 ): Paystack {
   return createPaystack({
     secretKey: resolveSecret(options),
+    ...(options.baseUrl ? { baseUrl: options.baseUrl } : {}),
     ...(options.fetch ? { fetch: options.fetch } : {}),
     ...(options.timeoutMs ? { timeoutMs: options.timeoutMs } : {}),
     idempotencyKey: "auto",

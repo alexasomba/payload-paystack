@@ -184,37 +184,57 @@ async function processWebhookEvent(
   slugs: ReturnType<typeof resolveSlugs>,
   event: Record<string, unknown>,
   eventKey: string,
+  client: ReturnType<typeof createPayloadPaystack>,
 ) {
   const type = fieldValue(event.event) ?? "unknown";
   const data = safeJson(event.data);
   const reference = fieldValue(data.reference);
   const providerId = fieldValue(data.id);
+  const eventAmount = typeof data.amount === "number" ? data.amount : undefined;
+  const eventCurrency = fieldValue(data.currency);
   const common = { providerData: data };
 
   if ((type === "charge.success" || type === "charge.failed") && reference) {
     const transaction = await findOne(req, slugs.transactions, "reference", reference);
-    const providerAmount = typeof data.amount === "number" ? data.amount : undefined;
-    const providerCurrency = fieldValue(data.currency);
-    const matches = transaction
-      ? transaction.amount === providerAmount && transaction.currency === providerCurrency
-      : false;
-    const status = matches
-      ? type === "charge.success" ? "success" : "failed"
-      : "review";
     if (transaction) {
+      // Treat the event as a notification. The verified transaction is authoritative for settlement.
+      const verification = safeJson(await verifyPaystackTransaction(client, reference));
+      const verificationMatches =
+        verification.reference === reference &&
+        verification.amount === transaction.amount &&
+        verification.currency === transaction.currency;
+      const eventMatches =
+        eventAmount === transaction.amount && eventCurrency === transaction.currency;
+      const providerStatus = fieldValue(verification.status);
+      const status =
+        verificationMatches && eventMatches
+          ? providerStatus === "success"
+            ? "success"
+            : providerStatus === "failed"
+              ? "failed"
+              : providerStatus === "abandoned"
+                ? "abandoned"
+                : "pending"
+          : "review";
       await req.payload.update({
         collection: asCollectionSlug(slugs.transactions),
         id: transaction.id,
-        data: { status, providerData: data, ...(providerId ? { providerId } : {}) },
+        data: {
+          status,
+          providerData: { ...data, verified: verification },
+          ...(fieldValue(verification.id) || providerId
+            ? { providerId: fieldValue(verification.id) ?? providerId }
+            : {}),
+        },
         overrideAccess: true,
       });
-    } else if (providerAmount && providerCurrency) {
+    } else if (eventAmount && eventCurrency) {
       await saveByField(req, slugs.transactions, "reference", reference, {
         providerData: data,
         ...(providerId ? { providerId } : {}),
         email: fieldValue(safeJson(data.customer).email),
-        amount: providerAmount,
-        currency: providerCurrency,
+        amount: eventAmount,
+        currency: eventCurrency,
         status: "review",
       });
     }
@@ -435,7 +455,7 @@ export function paystackPlugin(options: PaystackPluginOptions = {}) {
             });
             claimed = true;
           }
-          await processWebhookEvent(req, slugs, event, key);
+          await processWebhookEvent(req, slugs, event, key, createPayloadPaystack(options));
           return Response.json({ received: true });
         } catch (error) {
           const latest = claimed ? await findOne(req, slugs.webhookEvents, "eventKey", key) : undefined;

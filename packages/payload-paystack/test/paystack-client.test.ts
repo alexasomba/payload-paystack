@@ -50,6 +50,25 @@ describe("Paystack server helpers", () => {
     expect(mock.calls[1]?.url).toContain("/transaction/verify/ps-1");
   });
 
+  it("supports a loopback provider transport for isolated application tests", async () => {
+    const mock = providerFetch([
+      { status: true, message: "ok", data: { authorization_url: "https://checkout.paystack.com/a", access_code: "a", reference: "ps-local" } },
+    ]);
+    const client = createPayloadPaystack({
+      secretKey: "sk_test_fixture",
+      baseUrl: "http://127.0.0.1:3014",
+      fetch: mock.fetch,
+    });
+    await initializePaystackCheckout(client, {
+      email: "buyer@example.com",
+      amount: 2500,
+      currency: "NGN",
+      reference: "ps-local",
+    });
+
+    expect(mock.calls[0]?.url).toContain("http://127.0.0.1:3014/transaction/initialize");
+  });
+
   it("creates refunds and subscriptions through provider routes", async () => {
     const mock = providerFetch([
       { status: true, message: "ok", data: { id: 10, status: "pending" } },

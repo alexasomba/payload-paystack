@@ -1,6 +1,6 @@
 "use client";
 
-import { PaystackCheckout } from "@alexasomba/payload-paystack/react";
+import { PaystackCheckout } from "payload-paystack-payments/react";
 import { useState } from "react";
 
 export default function Home() {

@@ -568,14 +568,14 @@ export function paystackPlugin(options: PaystackPluginOptions = {}) {
           ...config.admin?.components,
           beforeNavLinks: [
             ...(config.admin?.components?.beforeNavLinks ?? []),
-            { path: "@alexasomba/payload-paystack/admin#PaystackAdminNav" },
+            { path: "payload-paystack-payments/admin#PaystackAdminNav" },
           ],
           views: {
             ...config.admin?.components?.views,
             paystackPayments: {
               path: "/paystack-payments",
               Component: {
-                path: "@alexasomba/payload-paystack/admin#PaystackAdmin",
+                path: "payload-paystack-payments/admin#PaystackAdmin",
                 serverProps: {
                   transactionsSlug: slugs.transactions,
                   plansSlug: slugs.plans,

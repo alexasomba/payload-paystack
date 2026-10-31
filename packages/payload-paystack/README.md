@@ -1,10 +1,10 @@
-# @alexasomba/payload-paystack
+# payload-paystack-payments
 
 Paystack checkout and billing workflows for Payload CMS 3.
 
 ## Install
 
-pnpm add @alexasomba/payload-paystack
+pnpm add payload-paystack-payments
 
 ## Configure
 
@@ -16,10 +16,10 @@ The plugin adds Payload collections for transactions, plans, subscriptions, refu
 
 ## Entry points
 
-- @alexasomba/payload-paystack — Payload plugin and option types
-- @alexasomba/payload-paystack/server — typed Paystack client and server billing helpers
-- @alexasomba/payload-paystack/react — hosted checkout component
-- @alexasomba/payload-paystack/admin — Payload admin view and navigation link
+- payload-paystack-payments — Payload plugin and option types
+- payload-paystack-payments/server — typed Paystack client and server billing helpers
+- payload-paystack-payments/react — hosted checkout component
+- payload-paystack-payments/admin — Payload admin view and navigation link
 
 ## Compatibility
 

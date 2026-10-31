@@ -1,9 +1,9 @@
 # Installation
 
-Install @alexasomba/payload-paystack in a Payload CMS 3 application.
+Install payload-paystack-payments in a Payload CMS 3 application.
 
 ```ts
-import { paystackPlugin } from "@alexasomba/payload-paystack";
+import { paystackPlugin } from "payload-paystack-payments";
 
 export default buildConfig({
   plugins: [
@@ -31,7 +31,7 @@ export default buildConfig({
 Render the reusable hosted checkout button from a client component:
 
 ```tsx
-import { PaystackCheckout } from "@alexasomba/payload-paystack/react";
+import { PaystackCheckout } from "payload-paystack-payments/react";
 
 <PaystackCheckout orderId={order.id} />
 ```

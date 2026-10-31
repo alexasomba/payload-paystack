@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "packageManager": "pnpm@12.16.1",
   "scripts": {
-    "build": "pnpm --filter @alexasomba/payload-paystack build",
-    "test": "pnpm --filter @alexasomba/payload-paystack test",
-    "typecheck": "pnpm --filter @alexasomba/payload-paystack typecheck",
+    "build": "pnpm --filter payload-paystack-payments build",
+    "test": "pnpm --filter payload-paystack-payments test",
+    "typecheck": "pnpm --filter payload-paystack-payments typecheck",
     "check": "pnpm build && pnpm typecheck && pnpm test && pnpm --filter payload-paystack-demo typecheck"
   },
   "devDependencies": {

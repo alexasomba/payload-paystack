@@ -1,5 +1,5 @@
 {
-  "name": "@alexasomba/payload-paystack",
+  "name": "payload-paystack-payments",
   "version": "0.1.0",
   "description": "Paystack payments and billing for Payload CMS",
   "author": "Alex Asomba",

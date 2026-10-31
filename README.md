@@ -6,7 +6,7 @@ The repository contains the publishable package, a Payload demo application, and
 
 ## Install
 
-pnpm add @alexasomba/payload-paystack
+pnpm add payload-paystack-payments
 
 The package uses @alexasomba/paystack-node for typed Paystack API calls.
 

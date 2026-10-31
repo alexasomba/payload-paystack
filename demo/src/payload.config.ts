@@ -1,6 +1,6 @@
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
-import { paystackPlugin } from "@alexasomba/payload-paystack";
+import { paystackPlugin } from "payload-paystack-payments";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildConfig, type CollectionConfig } from "payload";

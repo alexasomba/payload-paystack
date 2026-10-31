@@ -1,8 +1,8 @@
-import { PaystackAdmin as PaystackAdmin_ } from "@alexasomba/payload-paystack/admin";
-import { PaystackAdminNav as PaystackAdminNav_ } from "@alexasomba/payload-paystack/admin";
+import { PaystackAdmin as PaystackAdmin_ } from "payload-paystack-payments/admin";
+import { PaystackAdminNav as PaystackAdminNav_ } from "payload-paystack-payments/admin";
 
 /** @type {import('payload').ImportMap} */
 export const importMap = {
-  "@alexasomba/payload-paystack/admin#PaystackAdmin": PaystackAdmin_,
-  "@alexasomba/payload-paystack/admin#PaystackAdminNav": PaystackAdminNav_,
+  "payload-paystack-payments/admin#PaystackAdmin": PaystackAdmin_,
+  "payload-paystack-payments/admin#PaystackAdminNav": PaystackAdminNav_,
 };

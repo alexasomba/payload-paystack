@@ -184,9 +184,6 @@ importers:
 
   demo:
     dependencies:
-      '@alexasomba/payload-paystack':
-        specifier: workspace:*
-        version: link:../packages/payload-paystack
       '@payloadcms/db-postgres':
         specifier: ^3.92.1
         version: 3.92.1(payload@3.92.1(graphql@16.14.2)(typescript@5.9.3))
@@ -202,6 +199,9 @@ importers:
       payload:
         specifier: ^3.92.1
         version: 3.92.1(graphql@16.14.2)(typescript@5.9.3)
+      payload-paystack-payments:
+        specifier: workspace:*
+        version: link:../packages/payload-paystack
       react:
         specifier: ^19.2.1
         version: 19.3.1
